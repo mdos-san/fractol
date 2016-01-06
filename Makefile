@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/01/06 18:30:48 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/01/06 18:53:35 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,18 @@ SRC_O		= $(TMP_O:%=objects/%)
 
 all			: $(NAME)
 
-$(NAME)		: objects $(SRC_O)
+$(NAME)		: libs/libft.a libs/libmlx.a objects $(SRC_O)
 	$(COMPILER) $(FLAGS) $(SRC_O) -o $(NAME)
+
+libs/libft.a	:
+	make -C libs/libft
+	mv libs/libft/libft.a libs
+	make -C libs/libft/ fclean
+
+libs/libmlx.a	:
+	make -C libs/minilibx_macos
+	mv libs/minilibx_macos/libmlx.a libs
+	make -C libs/minilibx_macos clean
 
 objects		:
 	mkdir objects
@@ -39,5 +49,7 @@ clean		:
 
 fclean		: clean
 	rm -rf $(NAME)
+	rm -rf libs/libft.a
+	rm -rf libs/libmlx.a
 
 re			: fclean all
