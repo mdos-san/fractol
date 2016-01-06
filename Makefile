@@ -15,6 +15,14 @@ NAME		= fractol
 COMPILER	= gcc
 FLAGS		= -Wall -Werror -Wextra
 
+OS			= $(shell uname)
+
+MLX_DIR		= minilibx_macos
+
+ifeq ($(OS), Linux)
+MLX_DIR		= minilibx_linux
+endif
+
 TMP_C		=\
 			main.c
 SRC_C		= $(TMP_C:%=src/%)
@@ -33,9 +41,9 @@ libs/libft.a	:
 	make -C libs/libft/ fclean
 
 libs/libmlx.a	:
-	make -C libs/minilibx_macos
-	mv libs/minilibx_macos/libmlx.a libs
-	make -C libs/minilibx_macos clean
+	make -C libs/$(MLX_DIR)
+	mv libs/$(MLX_DIR)/libmlx.a libs
+	make -C libs/$(MLX_DIR) clean
 
 objects		:
 	mkdir objects
