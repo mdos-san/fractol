@@ -26,7 +26,7 @@ int	main(void)
 	env->mlx = mlx_init();
 	env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, "mdos-san's fractol");
 	img_clear(env->mlx, &env->img);
-	draw_mandelbrot(env, scn);
+	draw_mandelbrot(env, scn, 50);
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 	mlx_loop(env->mlx);
 	return (0);

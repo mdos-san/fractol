@@ -56,6 +56,6 @@ typedef struct	s_cplx
 
 void		img_clear(void *mlx, t_img *img);
 void		img_putpixel(t_env *env, t_pnt pnt, int color);
-void		draw_mandelbrot(t_env *env, t_scn scn);
+void		draw_mandelbrot(t_env *env, t_scn scn, int iter);
 
 #endif

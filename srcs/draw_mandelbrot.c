@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-void	draw_mandelbrot(t_env *env, t_scn scn)
+void	draw_mandelbrot(t_env *env, t_scn scn, int iter)
 {
 	t_cplx	c;
 	t_cplx	z;
@@ -22,14 +22,14 @@ void	draw_mandelbrot(t_env *env, t_scn scn)
 			c.i = scn.a.y;
 			z.r = 0;
 			z.i = 0;
-			while (i < 50 && z.r * z.r + z.i * z.i < 4)
+			while (i < iter && z.r * z.r + z.i * z.i < 4)
 			{
 				tmp = z.r;
 				z.r = z.r * z.r - z.i * z.i - c.r;
 				z.i = 2 * z.i * tmp + c.i;
 				++i;
 			}
-			if (i == 50)
+			if (i == iter)
 				img_putpixel(env, (t_pnt){x, y}, 0xFFFFFF);
 			x++;
 			scn.a.x += scn.step_x;
