@@ -4,9 +4,10 @@ void	draw_mandelbrot(t_env *env, t_scn scn, int iter)
 {
 	t_cplx	c;
 	t_cplx	z;
-	double	tmp;
 	double	tmp_2;
 	int		i;
+	double	tmpx;
+	double	tmpy;
 	int		x;
 	int		y;
 
@@ -24,13 +25,19 @@ void	draw_mandelbrot(t_env *env, t_scn scn, int iter)
 			z.i = 0;
 			while (i < iter && z.r * z.r + z.i * z.i < 4)
 			{
-				tmp = z.r;
-				z.r = z.r * z.r - z.i * z.i - c.r;
-				z.i = 2 * z.i * tmp + c.i;
+				tmpx = z.r * z.r - z.i * z.i - c.r;
+				tmpy = 2 * z.i * z.r + c.i;
+				if (tmpx == z.r && tmpy == z.i)
+				{
+					i = iter;
+					break ;
+				}
+				z.r = tmpx;
+				z.i = tmpy;
 				++i;
 			}
 			if (i == iter)
-				img_putpixel(env, (t_pnt){x, y}, 0xFF0000);
+				img_putpixel(env, (t_pnt){x, y}, 0xFFFF00);
 			x++;
 			scn.a.x += scn.step_x;
 		}
@@ -39,4 +46,5 @@ void	draw_mandelbrot(t_env *env, t_scn scn, int iter)
 		y++;
 		scn.a.y += scn.step_y;
 	}
+	env->first_draw = 1;
 }

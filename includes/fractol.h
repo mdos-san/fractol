@@ -55,6 +55,7 @@ typedef struct	s_env
 	t_img	img;
 	t_scn	scn;
 	int		iter;
+	char	first_draw;
 }				t_env;
 
 void		img_clear(void *mlx, t_img *img);
