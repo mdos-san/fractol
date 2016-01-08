@@ -10,7 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fractol.h"
+
 int	main(void)
 {
+	t_env	*env;
+
+	if (!(env = (t_env *)malloc(sizeof(t_env))))
+		return (0);
+	env->mlx = mlx_init();
+	env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, "mdos-san's fractol");
+	mlx_loop(env->mlx);
 	return (0);
 }
