@@ -14,6 +14,7 @@
 # define FRACTOL_H
 # include <stdlib.h>
 # include "mlx.h"
+# include "libft.h"
 # define WIDTH 600
 # define HEIGHT 400
 
@@ -32,5 +33,29 @@ typedef struct	s_env
 	void	*win;
 	t_img	img;
 }				t_env;
+
+typedef struct	s_pnt
+{
+	double	x;
+	double	y;
+}				t_pnt;
+
+typedef struct	s_scn
+{
+	t_pnt	a;
+	t_pnt	b;
+	double	step_x;
+	double	step_y;
+}				t_scn;
+
+typedef struct	s_cplx
+{
+	double	r;
+	double	i;
+}				t_cplx;
+
+void		img_clear(void *mlx, t_img *img);
+void		img_putpixel(t_env *env, t_pnt pnt, int color);
+void		draw_mandelbrot(t_env *env, t_scn scn);
 
 #endif
