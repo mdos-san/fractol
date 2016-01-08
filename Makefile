@@ -13,7 +13,7 @@
 NAME		= fractol
 
 COMPILER	= gcc
-FLAGS		= -Wall -Werror -Wextra -I./includes -L./libs
+FLAGS		= -O3 -Wall -Werror -Wextra -I./includes -L./libs
 LIBS		= -lft -lmlx
 
 OS			= $(shell uname)

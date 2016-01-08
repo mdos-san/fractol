@@ -13,10 +13,11 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 # include <stdlib.h>
+# include <math.h>
 # include "mlx.h"
 # include "libft.h"
 # define WIDTH 600
-# define HEIGHT 400
+# define HEIGHT 600
 
 typedef struct	s_img
 {
@@ -26,13 +27,6 @@ typedef struct	s_img
 	int		sl;
 	int		endian;
 }				t_img;
-
-typedef struct	s_env
-{
-	void	*mlx;
-	void	*win;
-	t_img	img;
-}				t_env;
 
 typedef struct	s_pnt
 {
@@ -53,6 +47,15 @@ typedef struct	s_cplx
 	double	r;
 	double	i;
 }				t_cplx;
+
+typedef struct	s_env
+{
+	void	*mlx;
+	void	*win;
+	t_img	img;
+	t_scn	scn;
+	int		iter;
+}				t_env;
 
 void		img_clear(void *mlx, t_img *img);
 void		img_putpixel(t_env *env, t_pnt pnt, int color);

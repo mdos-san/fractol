@@ -30,7 +30,7 @@ void	draw_mandelbrot(t_env *env, t_scn scn, int iter)
 				++i;
 			}
 			if (i == iter)
-				img_putpixel(env, (t_pnt){x, y}, 0xFFFFFF);
+				img_putpixel(env, (t_pnt){x, y}, 0xFF0000);
 			x++;
 			scn.a.x += scn.step_x;
 		}
