@@ -28,7 +28,6 @@ int	main(void)
 	img_clear(env->mlx, &env->img);
 	draw_mandelbrot(env, scn);
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
-	exit(0);
 	mlx_loop(env->mlx);
 	return (0);
 }
