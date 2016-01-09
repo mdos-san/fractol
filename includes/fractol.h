@@ -48,18 +48,25 @@ typedef struct	s_cplx
 	double	i;
 }				t_cplx;
 
+typedef struct	s_cel
+{
+	t_cplx	z;
+	char	is_out;
+}				t_cel;
+
 typedef struct	s_env
 {
 	void	*mlx;
 	void	*win;
 	t_img	img;
 	t_scn	scn;
-	int		iter;
-	char	first_draw;
+	t_cel	cel[WIDTH][HEIGHT];
+	unsigned int	iter;
 }				t_env;
 
 void		img_clear(void *mlx, t_img *img);
 void		img_putpixel(t_env *env, t_pnt pnt, int color);
-void		draw_mandelbrot(t_env *env, t_scn scn, int iter);
+void		cel_assign(t_env *env);
+void		draw_mandelbrot(t_env *env);
 
 #endif

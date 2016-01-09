@@ -27,6 +27,7 @@ endif
 TMP_C		=\
 			img_clear.c\
 			img_putpixel.c\
+			cel_assign.c\
 			draw_mandelbrot.c\
 			main.c
 SRC_C		= $(TMP_C:%=src/%)

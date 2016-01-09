@@ -1,50 +1,47 @@
 #include "fractol.h"
+#define CEL env->cel[x][y]
 
-void	draw_mandelbrot(t_env *env, t_scn scn, int iter)
+void	draw_mandelbrot(t_env *env)
 {
 	t_cplx	c;
-	t_cplx	z;
-	double	tmp_2;
-	int		i;
-	double	tmpx;
-	double	tmpy;
+	double	tmp;
+	t_scn	scn;
 	int		x;
 	int		y;
 
 	x = 0;
 	y = 0;
-	tmp_2 = scn.a.x;
+	scn = env->scn;
+	env->iter++;
 	while (y < HEIGHT)
 	{
 		while (x < WIDTH)
 		{
-			i = 0;
-			c.r = scn.a.x;
-			c.i = scn.a.y;
-			z.r = 0;
-			z.i = 0;
-			while (i < iter && z.r * z.r + z.i * z.i < 4)
+			if (!CEL.is_out)
 			{
-				tmpx = z.r * z.r - z.i * z.i - c.r;
-				tmpy = 2 * z.i * z.r + c.i;
-				if (tmpx == z.r && tmpy == z.i)
+				c.r = scn.a.x;
+				c.i = scn.a.y;
+				tmp = CEL.z.r;
+				CEL.z.r = CEL.z.r * CEL.z.r - CEL.z.i * CEL.z.i - c.r;
+				CEL.z.i = 2 * CEL.z.i * tmp + c.i;
+				if (CEL.z.r * CEL.z.r + CEL.z.i * CEL.z.i < 4)
+					img_putpixel(env, (t_pnt){x, y}, 0x000000);
+				else
 				{
-					i = iter;
-					break ;
+					img_putpixel(env, (t_pnt){x, y}, env->iter);
+					CEL.is_out = 1;
 				}
-				z.r = tmpx;
-				z.i = tmpy;
-				++i;
+				tmp = (c.r - 1 / 4) * (c.r - 1 / 4) + c.i * c.i;
+				if (tmp * (tmp + (c.r - 1 / 4)) < 1 / 4 * c.i * c.i)
+				CEL.is_out = 1;
+				if ((c.r + 1) * (c.r + 1) + c.i * c.i < 1 / 16)
+				CEL.is_out = 1;
 			}
-			if (i == iter)
-				img_putpixel(env, (t_pnt){x, y}, 0x000000);
-			else
-				img_putpixel(env, (t_pnt){x, y}, 0xFFFFFF);
 			x++;
 			scn.a.x += scn.step_x;
 		}
 		x = 0;
-		scn.a.x = tmp_2;
+		scn.a.x = env->scn.a.x;
 		y++;
 		scn.a.y += scn.step_y;
 	}

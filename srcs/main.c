@@ -20,8 +20,7 @@ int	expose_hook(t_env *env)
 
 int	loop_hook(t_env *env)
 {
-	img_clear(env->mlx, &env->img);
-	draw_mandelbrot(env, env->scn, env->iter);
+	draw_mandelbrot(env);
 	expose_hook(env);
 //	exit(0);
 	return (1);
@@ -33,17 +32,16 @@ int	key_hook(int keycode, t_env *env)
 	ft_putendl(" <= keycode");
 	if (keycode == 65362)
 	{
-		env->scn.a.x += env->scn.step_x * WIDTH / 10;
-		env->scn.a.y += env->scn.step_y * HEIGHT / 10;
-		env->scn.b.x -= env->scn.step_x * WIDTH / 10;
-		env->scn.b.y -= env->scn.step_y * HEIGHT / 10;
+		img_clear(env->mlx, &env->img);
+		cel_assign(env);
+		env->scn.a.x += env->scn.step_x * 10;
+		env->scn.a.y += env->scn.step_y * 10;
+		env->scn.b.x -= env->scn.step_x * 10;
+		env->scn.b.y -= env->scn.step_y * 10;
 		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
 		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
+		env->iter = 0;
 	}
-	if (keycode == 49)
-		env->iter++;
-	if (keycode == 50)
-		env->iter--;
 	return (1);
 }
 
@@ -56,11 +54,13 @@ int	main(void)
 	env->mlx = mlx_init();
 	env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, "mdos-san's fractol");
 	img_clear(env->mlx, &env->img);
-	env->scn.a = (t_pnt){2, -1};
-	env->scn.b = (t_pnt){-1, 1};
+	env->scn.a = (t_pnt){2.25, -1.3};
+	env->scn.b = (t_pnt){-0.70, 1.3};
 	env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
 	env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
-	env->iter = 50;
+	env->iter = 0;
+	cel_assign(env);
+	ft_putendl("cel_assign [DONE]");
 	mlx_expose_hook(env->win, expose_hook, env);
 	mlx_key_hook(env->win, key_hook, env);
 	mlx_loop_hook(env->mlx, loop_hook, env);
