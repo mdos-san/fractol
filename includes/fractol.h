@@ -16,8 +16,8 @@
 # include <math.h>
 # include "mlx.h"
 # include "libft.h"
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 600
+# define HEIGHT 400
 
 typedef struct	s_img
 {

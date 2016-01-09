@@ -22,9 +22,6 @@ int	loop_hook(t_env *env)
 {
 	img_clear(env->mlx, &env->img);
 	draw_mandelbrot(env, env->scn, env->iter);
-	env->iter++;
-	ft_putnbr(env->iter);
-	ft_putendl("<- iteration");
 	expose_hook(env);
 //	exit(0);
 	return (1);
@@ -63,7 +60,7 @@ int	main(void)
 	env->scn.b = (t_pnt){-1, 1};
 	env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
 	env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
-	env->iter = 2;
+	env->iter = 50;
 	mlx_expose_hook(env->win, expose_hook, env);
 	mlx_key_hook(env->win, key_hook, env);
 	mlx_loop_hook(env->mlx, loop_hook, env);
