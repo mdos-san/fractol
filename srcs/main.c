@@ -34,12 +34,44 @@ int	key_hook(int keycode, t_env *env)
 	{
 		img_clear(env->mlx, &env->img);
 		cel_assign(env);
-		env->scn.a.x += env->scn.step_x * 10;
-		env->scn.a.y += env->scn.step_y * 10;
-		env->scn.b.x -= env->scn.step_x * 10;
-		env->scn.b.y -= env->scn.step_y * 10;
+		env->scn.a.x += env->scn.step_x * WIDTH / 4;
+		env->scn.a.y += env->scn.step_y * HEIGHT / 4;
+		env->scn.b.x -= env->scn.step_x * WIDTH /4;
+		env->scn.b.y -= env->scn.step_y * HEIGHT /4;
 		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
 		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
+		env->iter = 0;
+	}
+	if (keycode == 100)
+	{
+		img_clear(env->mlx, &env->img);
+		cel_assign(env);
+		env->scn.a.x += env->scn.step_x * 10;
+		env->scn.b.x += env->scn.step_x * 10;
+		env->iter = 0;
+	}
+	if (keycode == 97)
+	{
+		img_clear(env->mlx, &env->img);
+		cel_assign(env);
+		env->scn.a.x -= env->scn.step_x * 10;
+		env->scn.b.x -= env->scn.step_x * 10;
+		env->iter = 0;
+	}
+	if (keycode == 119)
+	{
+		img_clear(env->mlx, &env->img);
+		cel_assign(env);
+		env->scn.a.y -= env->scn.step_y * 10;
+		env->scn.b.y -= env->scn.step_y * 10;
+		env->iter = 0;
+	}
+	if (keycode == 115)
+	{
+		img_clear(env->mlx, &env->img);
+		cel_assign(env);
+		env->scn.a.y += env->scn.step_y * 10;
+		env->scn.b.y += env->scn.step_y * 10;
 		env->iter = 0;
 	}
 	return (1);
@@ -54,8 +86,8 @@ int	main(void)
 	env->mlx = mlx_init();
 	env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, "mdos-san's fractol");
 	img_clear(env->mlx, &env->img);
-	env->scn.a = (t_pnt){2.25, -1.3};
-	env->scn.b = (t_pnt){-0.70, 1.3};
+	env->scn.a = (t_pnt){2, -1};
+	env->scn.b = (t_pnt){-1, 1};
 	env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
 	env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
 	env->iter = 0;

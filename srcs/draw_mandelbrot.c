@@ -6,13 +6,20 @@ void	draw_mandelbrot(t_env *env)
 	t_cplx	c;
 	double	tmp;
 	t_scn	scn;
+	unsigned int		*color;
+	int		i;
 	int		x;
 	int		y;
 
 	x = 0;
 	y = 0;
 	scn = env->scn;
-	env->iter++;
+	i = env->iter++;
+	color = (unsigned int *)malloc(sizeof(unsigned int));
+	*((unsigned char*)color + 0) = i * 255 / 100;
+	*((unsigned char*)color + 1) = 0;
+	*((unsigned char*)color + 2) = 0;
+	*((unsigned char*)color + 3) = 0;
 	while (y < HEIGHT)
 	{
 		while (x < WIDTH)
@@ -28,14 +35,9 @@ void	draw_mandelbrot(t_env *env)
 					img_putpixel(env, (t_pnt){x, y}, 0x000000);
 				else
 				{
-					img_putpixel(env, (t_pnt){x, y}, env->iter);
+					img_putpixel(env, (t_pnt){x, y}, *color);
 					CEL.is_out = 1;
 				}
-				tmp = (c.r - 1 / 4) * (c.r - 1 / 4) + c.i * c.i;
-				if (tmp * (tmp + (c.r - 1 / 4)) < 1 / 4 * c.i * c.i)
-				CEL.is_out = 1;
-				if ((c.r + 1) * (c.r + 1) + c.i * c.i < 1 / 16)
-				CEL.is_out = 1;
 			}
 			x++;
 			scn.a.x += scn.step_x;
@@ -45,4 +47,5 @@ void	draw_mandelbrot(t_env *env)
 		y++;
 		scn.a.y += scn.step_y;
 	}
+	free(color);
 }
