@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/01/11 23:20:55 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/01/12 00:43:16 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	key_hook(int keycode, t_env *env)
 {
 	ft_putnbr(keycode);
 	ft_putendl(" <= keycode");
+	if (keycode == 53)
+		exit (0);
 	if (keycode == 65362 || keycode == 126)
 	{
 		zoom(env);

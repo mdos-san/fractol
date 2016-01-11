@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 21:53:11 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/01/11 23:31:11 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/01/12 00:29:24 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	draw_mandelbrot(t_env *env)
 	scn = env->scn;
 	i = env->iter++;
 	color = (unsigned int *)malloc(sizeof(unsigned int));
-	*((unsigned char*)color + 0) = i * 255 / 100;
-	*((unsigned char*)color + 1) = 0;
+	*((unsigned char*)color + 0) = 0;
+	*((unsigned char*)color + 1) = i;
 	*((unsigned char*)color + 2) = 0;
 	*((unsigned char*)color + 3) = 0;
 	while (y < HEIGHT)
