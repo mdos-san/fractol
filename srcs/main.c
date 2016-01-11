@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/01/11 19:01:49 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/01/11 23:20:55 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	expose_hook(t_env *env)
 {
+	img_putpixel(env, (t_pnt){WIDTH / 2, HEIGHT / 2}, 0xFF00FF);
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 	return (1);
 }
@@ -22,7 +23,6 @@ int	loop_hook(t_env *env)
 {
 	draw_mandelbrot(env);
 	expose_hook(env);
-//	exit(0);
 	return (1);
 }
 
@@ -32,7 +32,8 @@ int	key_hook(int keycode, t_env *env)
 	ft_putendl(" <= keycode");
 	if (keycode == 65362 || keycode == 126)
 	{
-		img_clear(env->mlx, &env->img);
+		zoom(env);
+		mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 		cel_assign(env);
 		env->scn.a.x += env->scn.step_x * WIDTH / 4;
 		env->scn.a.y += env->scn.step_y * HEIGHT / 4;
@@ -92,7 +93,6 @@ int	main(void)
 	env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
 	env->iter = 0;
 	cel_assign(env);
-	ft_putendl("cel_assign [DONE]");
 	mlx_expose_hook(env->win, expose_hook, env);
 	mlx_key_hook(env->win, key_hook, env);
 	mlx_loop_hook(env->mlx, loop_hook, env);

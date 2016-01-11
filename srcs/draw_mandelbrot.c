@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_mandelbrot.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/01/11 21:53:11 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/01/11 23:31:11 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 #define CEL env->cel[x][y]
 
@@ -24,7 +36,7 @@ void	draw_mandelbrot(t_env *env)
 	{
 		while (x < WIDTH)
 		{
-			if (!CEL.is_out)
+			if (*(unsigned int *)(env->img.data + env->img.bpp * x + env->img.sl * y) == 0x000000)
 			{
 				c.r = scn.a.x;
 				c.i = scn.a.y;

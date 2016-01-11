@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:19:27 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/01/11 18:51:35 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/01/11 23:26:01 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void		img_clear(void *mlx, t_img *img);
 void		img_putpixel(t_env *env, t_pnt pnt, int color);
 void		cel_assign(t_env *env);
 void		draw_mandelbrot(t_env *env);
+void		zoom(t_env *env);
 
 #endif
