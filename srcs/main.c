@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/01/06 18:05:24 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/01/11 19:01:49 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	key_hook(int keycode, t_env *env)
 {
 	ft_putnbr(keycode);
 	ft_putendl(" <= keycode");
-	if (keycode == 65362)
+	if (keycode == 65362 || keycode == 126)
 	{
 		img_clear(env->mlx, &env->img);
 		cel_assign(env);
@@ -42,7 +42,7 @@ int	key_hook(int keycode, t_env *env)
 		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
 		env->iter = 0;
 	}
-	if (keycode == 100)
+	if (keycode == 100 || keycode == 2)
 	{
 		img_clear(env->mlx, &env->img);
 		cel_assign(env);
@@ -50,7 +50,7 @@ int	key_hook(int keycode, t_env *env)
 		env->scn.b.x += env->scn.step_x * 10;
 		env->iter = 0;
 	}
-	if (keycode == 97)
+	if (keycode == 97 || keycode == 0)
 	{
 		img_clear(env->mlx, &env->img);
 		cel_assign(env);
@@ -58,7 +58,7 @@ int	key_hook(int keycode, t_env *env)
 		env->scn.b.x -= env->scn.step_x * 10;
 		env->iter = 0;
 	}
-	if (keycode == 119)
+	if (keycode == 119 || keycode == 13)
 	{
 		img_clear(env->mlx, &env->img);
 		cel_assign(env);
@@ -66,7 +66,7 @@ int	key_hook(int keycode, t_env *env)
 		env->scn.b.y -= env->scn.step_y * 10;
 		env->iter = 0;
 	}
-	if (keycode == 115)
+	if (keycode == 115 || keycode == 1)
 	{
 		img_clear(env->mlx, &env->img);
 		cel_assign(env);
