@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:19:27 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/01/06 17:24:40 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/01/11 18:51:35 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <math.h>
 # include "mlx.h"
 # include "libft.h"
-# define WIDTH 600
-# define HEIGHT 400
+# define WIDTH 1920
+# define HEIGHT 1080
 
 typedef struct	s_img
 {

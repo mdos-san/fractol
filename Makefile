@@ -6,15 +6,15 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/01/06 18:53:35 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/01/11 18:51:05 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= fractol
 
 COMPILER	= gcc
-FLAGS		= -O3 -Wall -Werror -Wextra -I./includes -L./libs
-LIBS		= -lft -lmlx
+FLAGS		= -O3 -Wall -Werror -Wextra -I./includes
+LIBS		= -L./libs -lft -lmlx
 
 OS			= $(shell uname)
 
@@ -41,7 +41,7 @@ $(NAME)		: libs/libft.a libs/libmlx.a objects $(SRC_O)
 ifeq ($(OS), Linux)
 	$(COMPILER) $(SRC_O) $(FLAGS) $(LIBS) -lX11 -lXext -o $(NAME)
 else
-	$(COMPILER) $(SRC_O) $(FLAGS) $(LIBS) -lX11 -lXext -o $(NAME)
+	$(COMPILER) $(SRC_O) $(FLAGS) $(LIBS) -framework OpenGL -framework AppKit -o $(NAME)
 endif
 
 libs/libft.a	:
