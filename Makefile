@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/01/11 22:29:03 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/01/12 00:57:41 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ endif
 TMP_C		=\
 			img_clear.c\
 			img_putpixel.c\
+			img_move.c\
 			cel_assign.c\
 			draw_mandelbrot.c\
 			zoom.c\

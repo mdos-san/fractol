@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/01/12 00:43:16 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/01/12 01:44:25 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	expose_hook(t_env *env)
 {
-	img_putpixel(env, (t_pnt){WIDTH / 2, HEIGHT / 2}, 0xFF00FF);
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 	return (1);
 }
@@ -47,34 +46,34 @@ int	key_hook(int keycode, t_env *env)
 	}
 	if (keycode == 100 || keycode == 2)
 	{
-		img_clear(env->mlx, &env->img);
+		img_move(env, - WIDTH * 0.05, 0);
 		cel_assign(env);
-		env->scn.a.x += env->scn.step_x * 10;
-		env->scn.b.x += env->scn.step_x * 10;
+		env->scn.a.x += env->scn.step_x * WIDTH * 0.05;
+		env->scn.b.x += env->scn.step_x * WIDTH * 0.05;
 		env->iter = 0;
 	}
 	if (keycode == 97 || keycode == 0)
 	{
-		img_clear(env->mlx, &env->img);
+		img_move(env, WIDTH * 0.05, 0);
 		cel_assign(env);
-		env->scn.a.x -= env->scn.step_x * 10;
-		env->scn.b.x -= env->scn.step_x * 10;
+		env->scn.a.x -= env->scn.step_x * WIDTH * 0.05;
+		env->scn.b.x -= env->scn.step_x * WIDTH * 0.05;
 		env->iter = 0;
 	}
 	if (keycode == 119 || keycode == 13)
 	{
-		img_clear(env->mlx, &env->img);
+		img_move(env, 0, HEIGHT * 0.05);
 		cel_assign(env);
-		env->scn.a.y -= env->scn.step_y * 10;
-		env->scn.b.y -= env->scn.step_y * 10;
+		env->scn.a.y -= env->scn.step_y * HEIGHT * 0.05;
+		env->scn.b.y -= env->scn.step_y * HEIGHT * 0.05;
 		env->iter = 0;
 	}
 	if (keycode == 115 || keycode == 1)
 	{
-		img_clear(env->mlx, &env->img);
+		img_move(env, 0, - HEIGHT * 0.05);
 		cel_assign(env);
-		env->scn.a.y += env->scn.step_y * 10;
-		env->scn.b.y += env->scn.step_y * 10;
+		env->scn.a.y += env->scn.step_y * HEIGHT * 0.05;
+		env->scn.b.y += env->scn.step_y * HEIGHT * 0.05;
 		env->iter = 0;
 	}
 	return (1);

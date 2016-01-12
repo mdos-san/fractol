@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:19:27 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/01/11 23:26:01 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/01/12 00:58:15 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct	s_env
 
 void		img_clear(void *mlx, t_img *img);
 void		img_putpixel(t_env *env, t_pnt pnt, int color);
+void		img_move(t_env *env, int mx, int my);
 void		cel_assign(t_env *env);
 void		draw_mandelbrot(t_env *env);
 void		zoom(t_env *env);
