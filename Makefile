@@ -6,14 +6,14 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/01/12 00:57:41 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/01/12 02:21:04 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= fractol
 
 COMPILER	= gcc
-FLAGS		= -O3 -Wall -Werror -Wextra -I./includes
+FLAGS		= -Wall -Werror -Wextra -I./includes
 LIBS		= -L./libs -lft -lmlx
 
 OS			= $(shell uname)
