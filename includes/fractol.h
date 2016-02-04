@@ -64,6 +64,7 @@ typedef struct	s_env
 	t_cel	cel[WIDTH][HEIGHT];
 	unsigned int	iter;
 	char	done;
+	void	(*function)(struct s_env *, int);
 }				t_env;
 
 void		img_clear(void *mlx, t_img *img);

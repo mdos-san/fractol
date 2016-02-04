@@ -22,7 +22,7 @@ int	loop_hook(t_env *env)
 {
 	if (env->done == 0)
 	{
-		draw_mandelbrot(env, env->iter);
+		env->function(env, env->iter);
 		expose_hook(env);
 		env->done++;
 	}
@@ -103,6 +103,7 @@ int	main(void)
 	env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
 	env->done = 0;
 	env->iter = 50;
+	env->function = *draw_mandelbrot;
 	cel_assign(env);
 	mlx_expose_hook(env->win, expose_hook, env);
 	mlx_key_hook(env->win, key_hook, env);
