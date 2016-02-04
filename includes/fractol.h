@@ -63,13 +63,14 @@ typedef struct	s_env
 	t_scn	scn;
 	t_cel	cel[WIDTH][HEIGHT];
 	unsigned int	iter;
+	char	done;
 }				t_env;
 
 void		img_clear(void *mlx, t_img *img);
 void		img_putpixel(t_env *env, t_pnt pnt, int color);
 void		img_move(t_env *env, int mx, int my);
 void		cel_assign(t_env *env);
-void		draw_mandelbrot(t_env *env);
+void	draw_mandelbrot(t_env *env, int nbr);
 void		zoom(t_env *env);
 
 #endif

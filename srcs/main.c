@@ -20,8 +20,12 @@ int	expose_hook(t_env *env)
 
 int	loop_hook(t_env *env)
 {
-	draw_mandelbrot(env);
-	expose_hook(env);
+	if (env->done == 0)
+	{
+		draw_mandelbrot(env, env->iter);
+		expose_hook(env);
+		env->done++;
+	}
 	return (1);
 }
 
@@ -42,7 +46,7 @@ int	key_hook(int keycode, t_env *env)
 		env->scn.b.y -= env->scn.step_y * HEIGHT /4;
 		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
 		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
-		env->iter = 0;
+		env->done = 0;
 	}
 	if (keycode == 100 || keycode == 2)
 	{
@@ -50,7 +54,7 @@ int	key_hook(int keycode, t_env *env)
 		cel_assign(env);
 		env->scn.a.x += env->scn.step_x * WIDTH * 0.05;
 		env->scn.b.x += env->scn.step_x * WIDTH * 0.05;
-		env->iter = 0;
+		env->done = 0;
 	}
 	if (keycode == 97 || keycode == 0)
 	{
@@ -58,7 +62,7 @@ int	key_hook(int keycode, t_env *env)
 		cel_assign(env);
 		env->scn.a.x -= env->scn.step_x * WIDTH * 0.05;
 		env->scn.b.x -= env->scn.step_x * WIDTH * 0.05;
-		env->iter = 0;
+		env->done = 0;
 	}
 	if (keycode == 119 || keycode == 13)
 	{
@@ -66,7 +70,7 @@ int	key_hook(int keycode, t_env *env)
 		cel_assign(env);
 		env->scn.a.y -= env->scn.step_y * HEIGHT * 0.05;
 		env->scn.b.y -= env->scn.step_y * HEIGHT * 0.05;
-		env->iter = 0;
+		env->done = 0;
 	}
 	if (keycode == 115 || keycode == 1)
 	{
@@ -74,7 +78,12 @@ int	key_hook(int keycode, t_env *env)
 		cel_assign(env);
 		env->scn.a.y += env->scn.step_y * HEIGHT * 0.05;
 		env->scn.b.y += env->scn.step_y * HEIGHT * 0.05;
-		env->iter = 0;
+		env->done = 0;
+	}
+	if (keycode == 65451)
+	{
+		env->iter += 25;
+		env->done = 0;
 	}
 	return (1);
 }
@@ -92,7 +101,8 @@ int	main(void)
 	env->scn.b = (t_pnt){-1, 1};
 	env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
 	env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
-	env->iter = 0;
+	env->done = 0;
+	env->iter = 50;
 	cel_assign(env);
 	mlx_expose_hook(env->win, expose_hook, env);
 	mlx_key_hook(env->win, key_hook, env);

@@ -13,7 +13,7 @@
 #include "fractol.h"
 #define CEL env->cel[x][y]
 
-void	draw_mandelbrot(t_env *env)
+void	draw_mandelbrot(t_env *env, int nbr)
 {
 	t_cplx	c;
 	double	tmp;
@@ -24,26 +24,35 @@ void	draw_mandelbrot(t_env *env)
 
 	x = 0;
 	y = 0;
+	i = 0;
 	scn = env->scn;
-	i = env->iter++;
 	while (y < HEIGHT)
 	{
 		while (x < WIDTH)
 		{
 			if (*(unsigned int *)(env->img.data + env->img.bpp * x + env->img.sl * y) == 0x000000)
 			{
-				c.r = scn.a.x;
-				c.i = scn.a.y;
-				tmp = CEL.z.r;
-				CEL.z.r = CEL.z.r * CEL.z.r - CEL.z.i * CEL.z.i - c.r;
-				CEL.z.i = 2 * CEL.z.i * tmp + c.i;
+				while (i < nbr && CEL.z.r * CEL.z.r + CEL.z.i * CEL.z.i < 4)
+				{
+					c.r = scn.a.x;
+					c.i = scn.a.y;
+					tmp = CEL.z.r;
+					CEL.z.r = CEL.z.r * CEL.z.r - CEL.z.i * CEL.z.i - c.r;
+					CEL.z.i = 2 * CEL.z.i * tmp + c.i;
+					++i;
+				}
 				if (CEL.z.r * CEL.z.r + CEL.z.i * CEL.z.i < 4)
+				{
+					CEL.z.r = 0;
+					CEL.z.i = 0;
 					img_putpixel(env, (t_pnt){x, y}, 0x000000);
+				}
 				else
 				{
-					img_putpixel(env, (t_pnt){x, y}, color_convert(color_get((int)(i * 0.5) % 256, (int)(i * 0.7) % 256, (int)(i * 0.9) % 256, 0)));
+					img_putpixel(env, (t_pnt){x, y}, color_convert(color_get((i * 12) % 256, (i * 24) % 256, (i * 42) % 256, 0)));
 					CEL.is_out = 1;
 				}
+				i = 0;
 			}
 			x++;
 			scn.a.x += scn.step_x;
