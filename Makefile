@@ -14,7 +14,7 @@ NAME		= fractol
 
 COMPILER	= gcc
 FLAGS		= -Wall -Werror -Wextra -I./includes
-LIBS		= -L./libs -lft -lmlx
+LIBS		= -L./libs -lft -lmlx -lcolor
 
 OS			= $(shell uname)
 
@@ -39,7 +39,7 @@ SRC_O		= $(TMP_O:%=objects/%)
 
 all			: $(NAME)
 
-$(NAME)		: libs/libft.a libs/libmlx.a objects $(SRC_O)
+$(NAME)		: libs/libcolor.a libs/libft.a libs/libmlx.a objects $(SRC_O)
 ifeq ($(OS), Linux)
 	$(COMPILER) $(SRC_O) $(FLAGS) $(LIBS) -lX11 -lXext -o $(NAME)
 else
@@ -49,14 +49,19 @@ endif
 libs/libft.a	:
 	make -C libs/libft
 	mv libs/libft/libft.a libs
-	cp libs/libft/includes/libft.h includes
 	make -C libs/libft/ fclean
 
 libs/libmlx.a	:
 	make -C libs/$(MLX_DIR)
 	mv libs/$(MLX_DIR)/libmlx.a libs
-	cp libs/minilibx_macos/mlx.h includes
 	make -C libs/$(MLX_DIR) clean
+
+libs/libcolor.a	:
+	@echo "Making libcolor ..."
+	@make -C libs/libcolor
+	@cp libs/libcolor/libcolor.a libs
+	@make -C libs/libcolor fclean
+	@echo "Done !"
 
 objects		:
 	@mkdir objects
@@ -70,8 +75,9 @@ clean		:
 
 fclean		: clean
 	rm -rf $(NAME)
-	rm -rf libs/libft.a includes/libft.h
-	rm -rf libs/libmlx.a includes/mlx.h
+	rm -rf libs/libft.a
+	rm -rf libs/libmlx.a
+	rm -rf libs/libcolor.a
 	rm -rf libs/minilibx_linux/libmlx_Linux.a
 
 re			: fclean all

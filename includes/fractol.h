@@ -16,6 +16,7 @@
 # include <math.h>
 # include "mlx.h"
 # include "libft.h"
+# include "libcolor.h"
 # define WIDTH 640
 # define HEIGHT 480
 
