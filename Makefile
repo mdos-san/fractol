@@ -30,6 +30,7 @@ TMP_C		=\
 			img_move.c\
 			cel_assign.c\
 			draw_mandelbrot.c\
+			draw_julia.c\
 			zoom.c\
 			main.c
 SRC_C		= $(TMP_C:%=src/%)

@@ -17,6 +17,8 @@
 # include "mlx.h"
 # include "libft.h"
 # include "libcolor.h"
+# define POINTER_MOTION (1L<<6)
+# define MOTION_NOTIFY 6
 # define WIDTH 640
 # define HEIGHT 480
 
@@ -65,13 +67,16 @@ typedef struct	s_env
 	unsigned int	iter;
 	char	done;
 	void	(*function)(struct s_env *, int);
+	double	julia_x;
+	double	julia_y;
 }				t_env;
 
 void		img_clear(void *mlx, t_img *img);
 void		img_putpixel(t_env *env, t_pnt pnt, int color);
 void		img_move(t_env *env, int mx, int my);
 void		cel_assign(t_env *env);
-void	draw_mandelbrot(t_env *env, int nbr);
+void		draw_mandelbrot(t_env *env, int nbr);
+void		draw_julia(t_env *env, int nbr);
 void		zoom(t_env *env);
 
 #endif
