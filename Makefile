@@ -72,5 +72,6 @@ fclean		: clean
 	rm -rf $(NAME)
 	rm -rf libs/libft.a includes/libft.h
 	rm -rf libs/libmlx.a includes/mlx.h
+	rm -rf libs/minilibx_linux/libmlx_Linux.a
 
 re			: fclean all
