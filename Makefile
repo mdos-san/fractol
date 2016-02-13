@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/01/12 02:21:04 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/02/13 15:46:53 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ TMP_C		=\
 			cel_assign.c\
 			draw_mandelbrot.c\
 			draw_julia.c\
+			draw_ship.c\
 			zoom.c\
 			main.c
 SRC_C		= $(TMP_C:%=src/%)

@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/01/12 01:44:25 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/13 15:51:25 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	key_hook(int keycode, t_env *env)
 		env->scn.b.y += env->scn.step_y * HEIGHT * 0.05;
 		env->done = 0;
 	}
-	if (keycode == 65451)
+	if (keycode == 65451 || keycode == 69)
 	{
 		env->iter += 25;
 		env->done = 0;
@@ -123,6 +123,14 @@ int	main(int ac, char **av)
 			env->scn.b = (t_pnt){-1.5, 1};
 			mlx_hook(env->win, MOTION_NOTIFY, POINTER_MOTION, motion_notify, env);
 			env->function = *draw_julia;
+		}
+		else if (ft_strcmp(av[1], "ship") == 0)
+		{
+			env->scn.a = (t_pnt){2, -1};
+			env->scn.b = (t_pnt){-1, 1};
+			env->function = *draw_ship;
+			env->iter = 20;
+			cel_assign(env);
 		}
 		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
 		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
