@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/13 15:51:25 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/15 09:20:14 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	loop_hook(t_env *env)
 int	key_hook(int keycode, t_env *env)
 {
 	ft_putnbr(keycode);
-	ft_putendl(" <= keycode");
+	ft_putendl("<== keycode");
 	if (keycode == 53)
 		exit (0);
 	if (keycode == 65362 || keycode == 126)
@@ -42,8 +42,21 @@ int	key_hook(int keycode, t_env *env)
 		cel_assign(env);
 		env->scn.a.x += env->scn.step_x * WIDTH / 4;
 		env->scn.a.y += env->scn.step_y * HEIGHT / 4;
-		env->scn.b.x -= env->scn.step_x * WIDTH /4;
-		env->scn.b.y -= env->scn.step_y * HEIGHT /4;
+		env->scn.b.x -= env->scn.step_x * WIDTH / 4;
+		env->scn.b.y -= env->scn.step_y * HEIGHT / 4;
+		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
+		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
+		env->done = 0;
+	}
+	if (keycode == 65362 || keycode == 125)
+	{
+		zoom_out(env);
+		mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
+		cel_assign(env);
+		env->scn.a.x -= env->scn.step_x * WIDTH / 2;
+		env->scn.a.y -= env->scn.step_y * HEIGHT / 2;
+		env->scn.b.x += env->scn.step_x * WIDTH / 2;
+		env->scn.b.y += env->scn.step_y * HEIGHT / 2;
 		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
 		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
 		env->done = 0;

@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:19:27 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/13 15:46:39 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/15 08:48:19 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ void		draw_mandelbrot(t_env *env, int nbr);
 void		draw_julia(t_env *env, int nbr);
 void		draw_ship(t_env *env, int nbr);
 void		zoom(t_env *env);
+void		zoom_out(t_env *env);
 
 #endif
