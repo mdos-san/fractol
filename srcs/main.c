@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/16 09:06:00 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/16 09:21:13 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ int	key_hook(int keycode, t_env *env)
 		exit (0);
 	if (keycode == 65362 || keycode == 126)
 	{
-		zoom(env);
-		cel_assign(env);
+		img_clear(env->mlx, &env->img);
 		env->scn.a.x += env->scn.step_x * WIDTH / 4;
 		env->scn.a.y += env->scn.step_y * HEIGHT / 4;
 		env->scn.b.x -= env->scn.step_x * WIDTH / 4;
@@ -49,8 +48,7 @@ int	key_hook(int keycode, t_env *env)
 	}
 	if (keycode == 65362 || keycode == 125)
 	{
-		zoom_out(env);
-		cel_assign(env);
+		img_clear(env->mlx, &env->img);
 		env->scn.a.x -= env->scn.step_x * WIDTH / 2;
 		env->scn.a.y -= env->scn.step_y * HEIGHT / 2;
 		env->scn.b.x += env->scn.step_x * WIDTH / 2;
@@ -61,32 +59,26 @@ int	key_hook(int keycode, t_env *env)
 	}
 	if (keycode == 100 || keycode == 2)
 	{
-		img_move(env, - WIDTH * 0.05, 0);
-		cel_assign(env);
-		env->scn.a.x += env->scn.step_x * WIDTH * 0.05;
-		env->scn.b.x += env->scn.step_x * WIDTH * 0.05;
+		img_clear(env->mlx, &env->img);
+		img_move(env, WIDTH * 0.05, 0);
 		env->done = 0;
 	}
 	if (keycode == 97 || keycode == 0)
 	{
-		img_move(env, WIDTH * 0.05, 0);
-		cel_assign(env);
-		env->scn.a.x -= env->scn.step_x * WIDTH * 0.05;
-		env->scn.b.x -= env->scn.step_x * WIDTH * 0.05;
+		img_clear(env->mlx, &env->img);
+		img_move(env,  -WIDTH * 0.05, 0);
 		env->done = 0;
 	}
 	if (keycode == 119 || keycode == 13)
 	{
-		img_move(env, 0, HEIGHT * 0.05);
-		cel_assign(env);
-		env->scn.a.y -= env->scn.step_y * HEIGHT * 0.05;
-		env->scn.b.y -= env->scn.step_y * HEIGHT * 0.05;
+		img_clear(env->mlx, &env->img);
+		img_move(env, 0, -HEIGHT * 0.05);
 		env->done = 0;
 	}
 	if (keycode == 115 || keycode == 1)
 	{
-		img_move(env, 0, - HEIGHT * 0.05);
-		cel_assign(env);
+		img_clear(env->mlx, &env->img);
+		img_move(env, 0, HEIGHT * 0.05);
 		env->done = 0;
 	}
 	if (keycode == 65451 || keycode == 69)
@@ -104,7 +96,6 @@ int	mouse_hook(int button, int x, int y, t_env *env)
 	if (button == 5)
 	{
 		img_clear(env->mlx, &env->img);
-		cel_assign(env);
 		img_move(env, x - WIDTH / 2, y - HEIGHT / 2);
 		env->scn.a.x += env->scn.step_x * (WIDTH / 4);
 		env->scn.a.y += env->scn.step_y * (HEIGHT / 4);
@@ -117,8 +108,7 @@ int	mouse_hook(int button, int x, int y, t_env *env)
 	}
 	if (button == 4)
 	{
-		zoom_out(env);
-		cel_assign(env);
+		img_clear(env->mlx, &env->img);
 		env->scn.a.x -= env->scn.step_x * WIDTH / 2;
 		env->scn.a.y -= env->scn.step_y * HEIGHT / 2;
 		env->scn.b.x += env->scn.step_x * WIDTH / 2;
@@ -157,7 +147,6 @@ int	main(int ac, char **av)
 			env->scn.a = (t_pnt){2, -1};
 			env->scn.b = (t_pnt){-1, 1};
 			env->function = *draw_mandelbrot;
-			cel_assign(env);
 		}
 		else if (ft_strcmp(av[1], "julia") == 0)
 		{

@@ -32,13 +32,9 @@ void	draw_julia(t_env *env, int nbr)
 					++i;
 				}
 				if (z.r * z.r + z.i * z.i < 4)
-				{
 					img_putpixel(env, (t_pnt){x, y}, 0x000000);
-				}
 				else
-				{
 					img_putpixel(env, (t_pnt){x, y}, color_convert(color_get((i * 12) % 256, (i * 24) % 256, (i * 42) % 256, 0)));
-				}
 				i = 0;
 			}
 			x++;
