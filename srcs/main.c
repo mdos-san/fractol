@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/16 09:34:34 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/16 09:45:44 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	mouse_hook(int button, int x, int y, t_env *env)
 {
 	ft_putnbr(x - WIDTH / 2);
 	ft_putendl("<== x");
-	if (button == 5)
+	if (button == 5 || button == 1)
 	{
 		img_clear(env->mlx, &env->img);
 		img_move(env, x - WIDTH / 2, y - HEIGHT / 2);
@@ -106,7 +106,7 @@ int	mouse_hook(int button, int x, int y, t_env *env)
 		img_move(env, (x - WIDTH / 2) * -1, (y - HEIGHT / 2) * -1);
 		env->done = 0;
 	}
-	if (button == 4)
+	if (button == 4 || button == 2)
 	{
 		img_clear(env->mlx, &env->img);
 		env->scn.a.x -= env->scn.step_x * WIDTH / 2;
