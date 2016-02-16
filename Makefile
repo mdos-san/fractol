@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/02/13 15:46:53 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/02/16 10:07:00 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,6 @@ TMP_C		=\
 			img_clear.c\
 			img_putpixel.c\
 			img_move.c\
-			cel_assign.c\
 			draw_mandelbrot.c\
 			draw_julia.c\
 			draw_ship.c\

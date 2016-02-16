@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:19:27 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/15 08:48:19 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/16 11:27:45 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define MOTION_NOTIFY 6
 # define WIDTH 640
 # define HEIGHT 480
+# define BLACK 0x000000
 
 typedef struct	s_img
 {
@@ -64,20 +65,22 @@ typedef struct	s_env
 	t_img	img;
 	t_scn	scn;
 	t_cel	cel[WIDTH][HEIGHT];
-	unsigned int	iter;
+	int		iter;
 	char	done;
-	void	(*function)(struct s_env *, int);
+	t_cplx	c;
+	t_cplx	z;
+	void	(*function)(struct s_env *);
 	double	julia_x;
 	double	julia_y;
+	int		i;
 }				t_env;
 
 void		img_clear(void *mlx, t_img *img);
 void		img_putpixel(t_env *env, t_pnt pnt, int color);
 void		img_move(t_env *env, int mx, int my);
-void		cel_assign(t_env *env);
-void		draw_mandelbrot(t_env *env, int nbr);
-void		draw_julia(t_env *env, int nbr);
-void		draw_ship(t_env *env, int nbr);
+void		draw_mandelbrot(t_env *env);
+void		draw_julia(t_env *env);
+void		draw_ship(t_env *env);
 void		zoom(t_env *env);
 void		zoom_out(t_env *env);
 

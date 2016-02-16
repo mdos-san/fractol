@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/16 10:03:55 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/16 11:26:45 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	loop_hook(t_env *env)
 {
 	if (env->done == 0)
 	{
-		env->function(env, env->iter);
+		env->function(env);
 		expose_hook(env);
 		env->done++;
 	}
@@ -142,6 +142,11 @@ int	main(int ac, char **av)
 		img_clear(env->mlx, &env->img);
 		env->done = 0;
 		env->iter = 50;
+		env->i = 0;
+		env->c.r = 0;
+		env->c.i = 0;
+		env->z.r = 0;
+		env->z.i = 0;
 		if (ft_strcmp(av[1], "mandelbrot") == 0)
 		{
 			env->scn.a = (t_pnt){2, -1};

@@ -1,9 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_julia.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/02/16 10:11:11 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/02/16 11:27:29 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-void	draw_julia(t_env *env, int nbr)
+void	draw_julia(t_env *env)
 {
-	t_cplx	z;
-	t_cplx	c;
 	double	tmp;
 	t_scn	scn;
 	int		i;
@@ -20,18 +30,18 @@ void	draw_julia(t_env *env, int nbr)
 		{
 			if (*(unsigned int *)(env->img.data + env->img.bpp * x + env->img.sl * y) == 0x000000)
 			{
-				z.r = scn.a.x;
-				z.i = scn.a.y;
-				c.r = env->julia_x;
-				c.i = env->julia_y;
-				while (i < nbr && z.r * z.r + z.i * z.i < 4)
+				env->z.r = scn.a.x;
+				env->z.i = scn.a.y;
+				env->c.r = env->julia_x;
+				env->c.i = env->julia_y;
+				while (i < env->iter && env->z.r * env->z.r + env->z.i * env->z.i < 4)
 				{
-					tmp = z.r;
-					z.r = z.r * z.r - z.i * z.i + c.r;
-					z.i = 2 * z.i * tmp + c.i;
+					tmp = env->z.r;
+					env->z.r = env->z.r * env->z.r - env->z.i * env->z.i + env->c.r;
+					env->z.i = 2 * env->z.i * tmp + env->c.i;
 					++i;
 				}
-				if (z.r * z.r + z.i * z.i < 4)
+				if (env->z.r * env->z.r + env->z.i * env->z.i < 4)
 					img_putpixel(env, (t_pnt){x, y}, 0x000000);
 				else
 					img_putpixel(env, (t_pnt){x, y}, color_convert(color_get((i * 12) % 256, (i * 24) % 256, (i * 42) % 256, 0)));
