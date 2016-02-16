@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/16 08:07:36 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/16 08:27:52 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,35 @@ int	key_hook(int keycode, t_env *env)
 	return (1);
 }
 
+int	mouse_hook(int button, int x, int y, t_env *env)
+{
+	if (button == 5)
+	{
+		zoom(env);
+		cel_assign(env);
+		env->scn.a.x += env->scn.step_x * WIDTH / 4 + x * 0;
+		env->scn.a.y += env->scn.step_y * HEIGHT / 4 + y * 0;
+		env->scn.b.x -= env->scn.step_x * WIDTH / 4;
+		env->scn.b.y -= env->scn.step_y * HEIGHT / 4;
+		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
+		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
+		env->done = 0;
+	}
+	if (button == 4)
+	{
+		zoom_out(env);
+		cel_assign(env);
+		env->scn.a.x -= env->scn.step_x * WIDTH / 2;
+		env->scn.a.y -= env->scn.step_y * HEIGHT / 2;
+		env->scn.b.x += env->scn.step_x * WIDTH / 2;
+		env->scn.b.y += env->scn.step_y * HEIGHT / 2;
+		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
+		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
+		env->done = 0;
+	}
+	return (1);
+}
+
 int	motion_notify(int x, int y, t_env *env)
 {
 	img_clear(env->mlx, &env->img);
@@ -146,6 +175,7 @@ int	main(int ac, char **av)
 		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
 		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
 		mlx_expose_hook(env->win, expose_hook, env);
+		mlx_mouse_hook(env->win, mouse_hook, env);
 		mlx_key_hook(env->win, key_hook, env);
 		mlx_loop_hook(env->mlx, loop_hook, env);
 		mlx_loop(env->mlx);
