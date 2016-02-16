@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/16 09:21:13 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/16 09:34:34 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,6 @@ int	main(int ac, char **av)
 			env->scn.b = (t_pnt){-1, 1};
 			env->function = *draw_ship;
 			env->iter = 20;
-			cel_assign(env);
 		}
 		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
 		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
