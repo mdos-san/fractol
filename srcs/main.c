@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/15 09:20:14 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/16 08:07:36 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	key_hook(int keycode, t_env *env)
 	if (keycode == 65362 || keycode == 126)
 	{
 		zoom(env);
-		mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 		cel_assign(env);
 		env->scn.a.x += env->scn.step_x * WIDTH / 4;
 		env->scn.a.y += env->scn.step_y * HEIGHT / 4;
@@ -51,7 +50,6 @@ int	key_hook(int keycode, t_env *env)
 	if (keycode == 65362 || keycode == 125)
 	{
 		zoom_out(env);
-		mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 		cel_assign(env);
 		env->scn.a.x -= env->scn.step_x * WIDTH / 2;
 		env->scn.a.y -= env->scn.step_y * HEIGHT / 2;
