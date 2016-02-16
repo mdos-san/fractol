@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/16 08:27:52 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/16 09:06:00 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,6 @@ int	key_hook(int keycode, t_env *env)
 	{
 		img_move(env, 0, - HEIGHT * 0.05);
 		cel_assign(env);
-		env->scn.a.y += env->scn.step_y * HEIGHT * 0.05;
-		env->scn.b.y += env->scn.step_y * HEIGHT * 0.05;
 		env->done = 0;
 	}
 	if (keycode == 65451 || keycode == 69)
@@ -101,16 +99,20 @@ int	key_hook(int keycode, t_env *env)
 
 int	mouse_hook(int button, int x, int y, t_env *env)
 {
+	ft_putnbr(x - WIDTH / 2);
+	ft_putendl("<== x");
 	if (button == 5)
 	{
-		zoom(env);
+		img_clear(env->mlx, &env->img);
 		cel_assign(env);
-		env->scn.a.x += env->scn.step_x * WIDTH / 4 + x * 0;
-		env->scn.a.y += env->scn.step_y * HEIGHT / 4 + y * 0;
-		env->scn.b.x -= env->scn.step_x * WIDTH / 4;
-		env->scn.b.y -= env->scn.step_y * HEIGHT / 4;
+		img_move(env, x - WIDTH / 2, y - HEIGHT / 2);
+		env->scn.a.x += env->scn.step_x * (WIDTH / 4);
+		env->scn.a.y += env->scn.step_y * (HEIGHT / 4);
+		env->scn.b.x -= env->scn.step_x * (WIDTH / 4);
+		env->scn.b.y -= env->scn.step_y * (HEIGHT / 4);
 		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
 		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
+		img_move(env, (x - WIDTH / 2) * -1, (y - HEIGHT / 2) * -1);
 		env->done = 0;
 	}
 	if (button == 4)
