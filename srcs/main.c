@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/16 11:26:45 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/16 11:56:00 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int	key_hook(int keycode, t_env *env)
 	if (keycode == 65451 || keycode == 69)
 	{
 		env->iter += 25;
+		img_clear(env->mlx, &env->img);
 		env->done = 0;
 	}
 	return (1);
@@ -162,8 +163,8 @@ int	main(int ac, char **av)
 		}
 		else if (ft_strcmp(av[1], "ship") == 0)
 		{
-			env->scn.a = (t_pnt){2, -1};
-			env->scn.b = (t_pnt){-1, 1};
+			env->scn.a = (t_pnt){4, -2};
+			env->scn.b = (t_pnt){-2, 2};
 			env->function = *draw_ship;
 			env->iter = 20;
 		}
