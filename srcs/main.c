@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/16 11:56:00 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/16 13:42:57 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,8 @@ int	main(int ac, char **av)
 			env->function = *draw_ship;
 			env->iter = 20;
 		}
+		else
+			return (0);
 		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
 		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
 		mlx_expose_hook(env->win, expose_hook, env);
