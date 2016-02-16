@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/16 09:45:44 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/02/16 10:03:55 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,13 @@ int	main(int ac, char **av)
 		mlx_key_hook(env->win, key_hook, env);
 		mlx_loop_hook(env->mlx, loop_hook, env);
 		mlx_loop(env->mlx);
+	}
+	else
+	{
+		ft_putendl("Usage:");
+		ft_putendl("./fratol mandelbrot");
+		ft_putendl("./fractol julia");
+		ft_putendl("./fractol ship");
 	}
 	return (0);
 }
