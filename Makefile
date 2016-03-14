@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/03/14 17:07:47 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/03/14 18:22:07 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ TMP_C		=\
 			draw_ship.c\
 			key_hook.c\
 			error.c\
+			expose_hook.c\
+			loop_hook.c\
 			main.c
 SRC_C		= $(TMP_C:%=src/%)
 

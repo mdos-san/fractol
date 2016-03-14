@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 16:57:39 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/14 17:15:17 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/14 18:04:14 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ void	key1(int keycode, t_env *env)
 	if (keycode == 100 || keycode == 2)
 	{
 		img_clear(env->mlx, &env->img);
-		img_move(env, WIDTH * 0.05, 0);
+		img_move(env, 0.05 * WIDTH, 0);
 		env->done = 0;
 	}
 	if (keycode == 97 || keycode == 0)
 	{
 		img_clear(env->mlx, &env->img);
-		img_move(env, -WIDTH * 0.05, 0);
+		img_move(env, 0.05 * (-WIDTH), 0);
 		env->done = 0;
 	}
 	if (keycode == 119 || keycode == 13)
 	{
 		img_clear(env->mlx, &env->img);
-		img_move(env, 0, -HEIGHT * 0.05);
+		img_move(env, 0, 0.05 * -HEIGHT);
 		env->done = 0;
 	}
 }
@@ -39,7 +39,7 @@ void	key2(int keycode, t_env *env)
 	if (keycode == 115 || keycode == 1)
 	{
 		img_clear(env->mlx, &env->img);
-		img_move(env, 0, HEIGHT * 0.05);
+		img_move(env, 0, 0.05 * HEIGHT);
 		env->done = 0;
 	}
 	if (keycode == 65451 || keycode == 69)
@@ -52,7 +52,7 @@ void	key2(int keycode, t_env *env)
 		exit(0);
 }
 
-int			key_hook(int keycode, t_env *env)
+int		key_hook(int keycode, t_env *env)
 {
 	if (keycode == 65362 || keycode == 126)
 	{

@@ -6,30 +6,13 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/14 17:08:08 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/14 18:19:09 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	expose_hook(t_env *env)
-{
-	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
-	return (1);
-}
-
-int	loop_hook(t_env *env)
-{
-	if (env->done == 0)
-	{
-		env->function(env);
-		expose_hook(env);
-		env->done++;
-	}
-	return (1);
-}
-
-int	mouse_hook(int button, int x, int y, t_env *env)
+int		mouse_hook(int button, int x, int y, t_env *env)
 {
 	if (button == 5 || button == 1)
 	{
@@ -58,7 +41,7 @@ int	mouse_hook(int button, int x, int y, t_env *env)
 	return (1);
 }
 
-int	motion_notify(int x, int y, t_env *env)
+int		motion_notify(int x, int y, t_env *env)
 {
 	img_clear(env->mlx, &env->img);
 	env->julia_x = env->scn.a.x + ((double)x * env->scn.step_x);
@@ -67,48 +50,60 @@ int	motion_notify(int x, int y, t_env *env)
 	return (1);
 }
 
-int	main(int ac, char **av)
+int		init_env(t_env **env)
+{
+	if (!(*env = (t_env *)malloc(sizeof(t_env))))
+		return (0);
+	(*env)->mlx = mlx_init();
+	(*env)->win =
+		mlx_new_window((*env)->mlx, WIDTH, HEIGHT, "mdos-san's fractol");
+	(*env)->img.img = NULL;
+	img_clear((*env)->mlx, &(*env)->img);
+	(*env)->done = 0;
+	(*env)->iter = 50;
+	(*env)->i = 0;
+	(*env)->c.r = 0;
+	(*env)->c.i = 0;
+	(*env)->z.r = 0;
+	(*env)->z.i = 0;
+	return (1);
+}
+
+void	init_fractol(t_env *env, char **av)
+{
+	if (ft_strcmp(av[1], "mandelbrot") == 0)
+	{
+		env->scn.a = (t_pnt){2, -1};
+		env->scn.b = (t_pnt){-1, 1};
+		env->function = *draw_mandelbrot;
+	}
+	else if (ft_strcmp(av[1], "julia") == 0)
+	{
+		env->scn.a = (t_pnt){1.5, -1};
+		env->scn.b = (t_pnt){-1.5, 1};
+		mlx_hook(env->win, MOTION_NOTIFY, POINTER_MOTION,
+				motion_notify, env);
+		env->function = *draw_julia;
+	}
+	else if (ft_strcmp(av[1], "ship") == 0)
+	{
+		env->scn.a = (t_pnt){4, -2};
+		env->scn.b = (t_pnt){-2, 2};
+		env->function = *draw_ship;
+		env->iter = 20;
+	}
+	else
+		error();
+}
+
+int		main(int ac, char **av)
 {
 	t_env	*env;
 
 	if (ac == 2)
 	{
-		if (!(env = (t_env *)malloc(sizeof(t_env))))
-			return (0);
-		env->mlx = mlx_init();
-		env->win =
-			mlx_new_window(env->mlx, WIDTH, HEIGHT, "mdos-san's fractol");
-		img_clear(env->mlx, &env->img);
-		env->done = 0;
-		env->iter = 50;
-		env->i = 0;
-		env->c.r = 0;
-		env->c.i = 0;
-		env->z.r = 0;
-		env->z.i = 0;
-		if (ft_strcmp(av[1], "mandelbrot") == 0)
-		{
-			env->scn.a = (t_pnt){2, -1};
-			env->scn.b = (t_pnt){-1, 1};
-			env->function = *draw_mandelbrot;
-		}
-		else if (ft_strcmp(av[1], "julia") == 0)
-		{
-			env->scn.a = (t_pnt){1.5, -1};
-			env->scn.b = (t_pnt){-1.5, 1};
-			mlx_hook(env->win, MOTION_NOTIFY, POINTER_MOTION,
-												motion_notify, env);
-			env->function = *draw_julia;
-		}
-		else if (ft_strcmp(av[1], "ship") == 0)
-		{
-			env->scn.a = (t_pnt){4, -2};
-			env->scn.b = (t_pnt){-2, 2};
-			env->function = *draw_ship;
-			env->iter = 20;
-		}
-		else
-			error();
+		init_env(&env);
+		init_fractol(env, av);
 		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
 		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
 		mlx_expose_hook(env->win, expose_hook, env);
