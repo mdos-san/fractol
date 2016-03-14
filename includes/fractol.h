@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:19:27 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/16 11:27:45 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/14 16:24:23 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ typedef struct	s_env
 	int		i;
 }				t_env;
 
-void		img_clear(void *mlx, t_img *img);
-void		img_putpixel(t_env *env, t_pnt pnt, int color);
-void		img_move(t_env *env, int mx, int my);
-void		draw_mandelbrot(t_env *env);
-void		draw_julia(t_env *env);
-void		draw_ship(t_env *env);
-void		zoom(t_env *env);
-void		zoom_out(t_env *env);
+void			img_clear(void *mlx, t_img *img);
+void			img_putpixel(t_env *env, t_pnt pnt, int color);
+void			img_move(t_env *env, int mx, int my);
+void			draw_mandelbrot(t_env *env);
+void			draw_julia(t_env *env);
+void			draw_ship(t_env *env);
+void			zoom(t_env *env);
+void			zoom_out(t_env *env);
 
 #endif

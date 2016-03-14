@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 21:53:11 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/16 11:39:07 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/14 16:44:07 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,11 @@ static void	calculate_fractal(t_env *env, t_scn *scn, int *x, int *y)
 void		draw_mandelbrot(t_env *env)
 {
 	t_scn	scn;
-	int		i;
 	int		x;
 	int		y;
 
 	x = 0;
 	y = 0;
-	i = 0;
 	scn = env->scn;
 	while (y < HEIGHT)
 	{

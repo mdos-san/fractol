@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/02/16 13:42:57 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/14 16:30:10 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ int	loop_hook(t_env *env)
 
 int	key_hook(int keycode, t_env *env)
 {
-	ft_putnbr(keycode);
-	ft_putendl("<== keycode");
 	if (keycode == 53)
-		exit (0);
+		exit(0);
 	if (keycode == 65362 || keycode == 126)
 	{
 		img_clear(env->mlx, &env->img);
@@ -66,7 +64,7 @@ int	key_hook(int keycode, t_env *env)
 	if (keycode == 97 || keycode == 0)
 	{
 		img_clear(env->mlx, &env->img);
-		img_move(env,  -WIDTH * 0.05, 0);
+		img_move(env, -WIDTH * 0.05, 0);
 		env->done = 0;
 	}
 	if (keycode == 119 || keycode == 13)
@@ -92,8 +90,6 @@ int	key_hook(int keycode, t_env *env)
 
 int	mouse_hook(int button, int x, int y, t_env *env)
 {
-	ft_putnbr(x - WIDTH / 2);
-	ft_putendl("<== x");
 	if (button == 5 || button == 1)
 	{
 		img_clear(env->mlx, &env->img);
@@ -139,7 +135,8 @@ int	main(int ac, char **av)
 		if (!(env = (t_env *)malloc(sizeof(t_env))))
 			return (0);
 		env->mlx = mlx_init();
-		env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, "mdos-san's fractol");
+		env->win =
+			mlx_new_window(env->mlx, WIDTH, HEIGHT, "mdos-san's fractol");
 		img_clear(env->mlx, &env->img);
 		env->done = 0;
 		env->iter = 50;
@@ -158,7 +155,8 @@ int	main(int ac, char **av)
 		{
 			env->scn.a = (t_pnt){1.5, -1};
 			env->scn.b = (t_pnt){-1.5, 1};
-			mlx_hook(env->win, MOTION_NOTIFY, POINTER_MOTION, motion_notify, env);
+			mlx_hook(env->win, MOTION_NOTIFY, POINTER_MOTION,
+												motion_notify, env);
 			env->function = *draw_julia;
 		}
 		else if (ft_strcmp(av[1], "ship") == 0)
@@ -169,7 +167,13 @@ int	main(int ac, char **av)
 			env->iter = 20;
 		}
 		else
-			return (0);
+		{
+			ft_putendl("Usage:");
+			ft_putendl("./fratol mandelbrot");
+			ft_putendl("./fractol julia");
+			ft_putendl("./fractol ship");
+			exit(0);
+		}
 		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
 		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
 		mlx_expose_hook(env->win, expose_hook, env);
