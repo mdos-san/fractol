@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:19:27 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/14 16:24:23 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/14 17:12:31 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ typedef struct	s_env
 	void	*win;
 	t_img	img;
 	t_scn	scn;
-	t_cel	cel[WIDTH][HEIGHT];
 	int		iter;
 	char	done;
 	t_cplx	c;
@@ -81,7 +80,7 @@ void			img_move(t_env *env, int mx, int my);
 void			draw_mandelbrot(t_env *env);
 void			draw_julia(t_env *env);
 void			draw_ship(t_env *env);
-void			zoom(t_env *env);
-void			zoom_out(t_env *env);
+int				key_hook(int keycode, t_env *env);
+void			error(void);
 
 #endif

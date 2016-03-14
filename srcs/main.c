@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/14 16:30:10 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/14 17:08:08 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,65 +25,6 @@ int	loop_hook(t_env *env)
 		env->function(env);
 		expose_hook(env);
 		env->done++;
-	}
-	return (1);
-}
-
-int	key_hook(int keycode, t_env *env)
-{
-	if (keycode == 53)
-		exit(0);
-	if (keycode == 65362 || keycode == 126)
-	{
-		img_clear(env->mlx, &env->img);
-		env->scn.a.x += env->scn.step_x * WIDTH / 4;
-		env->scn.a.y += env->scn.step_y * HEIGHT / 4;
-		env->scn.b.x -= env->scn.step_x * WIDTH / 4;
-		env->scn.b.y -= env->scn.step_y * HEIGHT / 4;
-		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
-		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
-		env->done = 0;
-	}
-	if (keycode == 65362 || keycode == 125)
-	{
-		img_clear(env->mlx, &env->img);
-		env->scn.a.x -= env->scn.step_x * WIDTH / 2;
-		env->scn.a.y -= env->scn.step_y * HEIGHT / 2;
-		env->scn.b.x += env->scn.step_x * WIDTH / 2;
-		env->scn.b.y += env->scn.step_y * HEIGHT / 2;
-		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
-		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
-		env->done = 0;
-	}
-	if (keycode == 100 || keycode == 2)
-	{
-		img_clear(env->mlx, &env->img);
-		img_move(env, WIDTH * 0.05, 0);
-		env->done = 0;
-	}
-	if (keycode == 97 || keycode == 0)
-	{
-		img_clear(env->mlx, &env->img);
-		img_move(env, -WIDTH * 0.05, 0);
-		env->done = 0;
-	}
-	if (keycode == 119 || keycode == 13)
-	{
-		img_clear(env->mlx, &env->img);
-		img_move(env, 0, -HEIGHT * 0.05);
-		env->done = 0;
-	}
-	if (keycode == 115 || keycode == 1)
-	{
-		img_clear(env->mlx, &env->img);
-		img_move(env, 0, HEIGHT * 0.05);
-		env->done = 0;
-	}
-	if (keycode == 65451 || keycode == 69)
-	{
-		env->iter += 25;
-		img_clear(env->mlx, &env->img);
-		env->done = 0;
 	}
 	return (1);
 }
@@ -167,13 +108,7 @@ int	main(int ac, char **av)
 			env->iter = 20;
 		}
 		else
-		{
-			ft_putendl("Usage:");
-			ft_putendl("./fratol mandelbrot");
-			ft_putendl("./fractol julia");
-			ft_putendl("./fractol ship");
-			exit(0);
-		}
+			error();
 		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
 		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
 		mlx_expose_hook(env->win, expose_hook, env);
@@ -183,11 +118,6 @@ int	main(int ac, char **av)
 		mlx_loop(env->mlx);
 	}
 	else
-	{
-		ft_putendl("Usage:");
-		ft_putendl("./fratol mandelbrot");
-		ft_putendl("./fractol julia");
-		ft_putendl("./fractol ship");
-	}
+		error();
 	return (0);
 }
