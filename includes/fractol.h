@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:19:27 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/14 17:56:30 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/14 18:33:29 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ void			error(void);
 int				key_hook(int keycode, t_env *env);
 int				expose_hook(t_env *env);
 int				loop_hook(t_env *env);
+void			fractol_exit(t_env **env);
 
 #endif

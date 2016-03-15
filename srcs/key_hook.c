@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 16:57:39 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/14 18:04:14 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/14 18:37:37 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	key2(int keycode, t_env *env)
 		env->done = 0;
 	}
 	if (keycode == 53)
-		exit(0);
+		fractol_exit(&env);
 }
 
 int		key_hook(int keycode, t_env *env)

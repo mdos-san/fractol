@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color_step.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/15 15:27:18 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/03/15 15:29:37 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libcolor.h"
 
 t_color	color_step(t_color c_a, t_color c_b, int nbr_stp, int act_stp)
 {
-	t_color	step;
+	t_color		step;
 	double		r;
 	double		g;
 	double		b;

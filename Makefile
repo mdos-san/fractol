@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/06 17:24:47 by mdos-san          #+#    #+#              #
-#    Updated: 2016/03/14 18:22:07 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/03/15 15:38:40 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ TMP_C		=\
 			error.c\
 			expose_hook.c\
 			loop_hook.c\
+			fractol_exit.c\
 			main.c
 SRC_C		= $(TMP_C:%=src/%)
 
@@ -85,3 +86,5 @@ fclean		: clean
 	rm -rf libs/minilibx_linux/libmlx_Linux.a
 
 re			: fclean all
+
+.PHONY: all clean fclean re

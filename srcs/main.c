@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/14 18:19:09 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/14 18:38:26 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ int		main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		init_env(&env);
+		if (init_env(&env) == 0)
+			fractol_exit(&env);
 		init_fractol(env, av);
 		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
 		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
