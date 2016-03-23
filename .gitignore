@@ -1,1 +1,6 @@
+objects
+fractol
+libs/libft.a
+libs/libcolor.a
+libs/libmlx.a
 libs/minilibx_linux/libmlx_Linux.a
