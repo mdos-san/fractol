@@ -6,7 +6,7 @@
 /*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:48:22 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/14 18:38:26 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/23 21:34:57 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,15 @@ int		init_env(t_env **env)
 	return (1);
 }
 
-void	init_fractol(t_env *env, char **av)
+void	init_fractol(t_env *env)
 {
-	if (ft_strcmp(av[1], "mandelbrot") == 0)
+	if (ft_strcmp(env->av, "mandelbrot") == 0)
 	{
 		env->scn.a = (t_pnt){2, -1};
 		env->scn.b = (t_pnt){-1, 1};
 		env->function = *draw_mandelbrot;
 	}
-	else if (ft_strcmp(av[1], "julia") == 0)
+	else if (ft_strcmp(env->av, "julia") == 0)
 	{
 		env->scn.a = (t_pnt){1.5, -1};
 		env->scn.b = (t_pnt){-1.5, 1};
@@ -85,7 +85,7 @@ void	init_fractol(t_env *env, char **av)
 				motion_notify, env);
 		env->function = *draw_julia;
 	}
-	else if (ft_strcmp(av[1], "ship") == 0)
+	else if (ft_strcmp(env->av, "ship") == 0)
 	{
 		env->scn.a = (t_pnt){4, -2};
 		env->scn.b = (t_pnt){-2, 2};
@@ -94,6 +94,8 @@ void	init_fractol(t_env *env, char **av)
 	}
 	else
 		error();
+	env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
+	env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
 }
 
 int		main(int ac, char **av)
@@ -104,9 +106,8 @@ int		main(int ac, char **av)
 	{
 		if (init_env(&env) == 0)
 			fractol_exit(&env);
-		init_fractol(env, av);
-		env->scn.step_x = (env->scn.b.x - env->scn.a.x) / WIDTH;
-		env->scn.step_y = (env->scn.b.y - env->scn.a.y) / HEIGHT;
+		env->av = av[1];
+		init_fractol(env);
 		mlx_expose_hook(env->win, expose_hook, env);
 		mlx_mouse_hook(env->win, mouse_hook, env);
 		mlx_key_hook(env->win, key_hook, env);

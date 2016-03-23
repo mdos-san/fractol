@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 16:57:39 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/03/14 18:37:37 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/03/23 21:28:04 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ void	key1(int keycode, t_env *env)
 
 void	key2(int keycode, t_env *env)
 {
+	if (keycode == 15)
+	{
+		img_clear(env->mlx, &env->img);
+		init_fractol(env);
+		env->done = 0;
+	}
 	if (keycode == 115 || keycode == 1)
 	{
 		img_clear(env->mlx, &env->img);
