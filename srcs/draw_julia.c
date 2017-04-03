@@ -43,13 +43,11 @@ static void	calculate_fractal(t_env *env, t_scn *scn, int *x, int *y)
 void		draw_julia(t_env *env)
 {
 	t_scn	scn;
-	int		i;
 	int		x;
 	int		y;
 
 	x = 0;
 	y = 0;
-	i = 0;
 	scn = env->scn;
 	env->i = 0;
 	while (y < HEIGHT)
